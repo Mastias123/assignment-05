@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace GildedRose
 {
-    class Program
+    public class Program
     {
-        IList<Item> Items;
+        public IList<Item> Items;
         static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
@@ -135,13 +135,18 @@ namespace GildedRose
 
     }
 
-    public class Item
+    public class Item : IItem
     {
         public string Name { get; set; }
 
         public int SellIn { get; set; }
 
         public int Quality { get; set; }
+    }
+
+    public interface IItem
+    {
+        public void UpdateQuality() { }
     }
 
 }
