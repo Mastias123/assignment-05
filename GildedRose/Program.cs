@@ -11,15 +11,15 @@
             {
                 Items = new List<Item>
                 {
-                Create("+5 Dexterity Vest",10,20),
-                Create("Aged Brie",2,0 ),
-                Create("Elixir of the Mongoose",5,7),
-                Create("Sulfuras, Hand of Ragnaros",0,80),
-                Create("Sulfuras, Hand of Ragnaros",-1,80),
-                Create("Backstage passes to a TAFKAL80ETC concert",15,20),
-                Create("Backstage passes to a TAFKAL80ETC concert",10,49),
-                Create("Backstage passes to a TAFKAL80ETC concert", 5,49),
-				Create("Conjured Mana Cake",3,6),
+                    Create("+5 Dexterity Vest",10,20),
+                    Create("Aged Brie",2,0 ),
+                    Create("Elixir of the Mongoose",5,7),
+                    Create("Sulfuras, Hand of Ragnaros",0,80),
+                    Create("Sulfuras, Hand of Ragnaros",-1,80),
+                    Create("Backstage passes to a TAFKAL80ETC concert",15,20),
+                    Create("Backstage passes to a TAFKAL80ETC concert",10,49),
+                    Create("Backstage passes to a TAFKAL80ETC concert", 5,49),
+                    Create("Conjured Mana Cake",3,6),
                 }
             };
             for (var i = 0; i < 31; i++)
@@ -79,9 +79,9 @@
             }
         }
     }
-    public class Item
+    public abstract class Item //This class has been made abstract so that an item cannot be instantiated as an item
     {
-        public virtual void UpdateItem(){} //This method has been added to Item in order to support a solution that uses polymorphism
+        public abstract void UpdateItem(); //This method has been added to Item in order to support a solution that uses polymorphism
         public string Name { get; set; }
         public int SellIn { get; set; }
         public int Quality { get; set; }
@@ -217,6 +217,9 @@
             CalculateQuality(IncreaseValue);
         }
     }
-    public class LegendaryItem : Item {}
+    public class LegendaryItem : Item 
+    {
+        public override void UpdateItem(){}
+    }
     public class ConjuerdLegendaryItem : LegendaryItem{}
 }    
