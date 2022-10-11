@@ -226,11 +226,11 @@ public class ProgramTests
     }
 
 
-    // [Fact]
-    // public void testMain()
-    // {
-    //     Program.Main(new string[0]);
-    //     true.Should.BeTrue();
-    // }
+    [Fact]
+    public void testMain()
+    {
+        Program.Main(new string[0]);
+        true.Should().BeTrue();
+    }
     
 }

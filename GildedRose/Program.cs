@@ -6,7 +6,7 @@ namespace GildedRose
     public class Program
     {
         public IList<Item> Items;
-        static void Main(string[] args)
+        public static void Main(string[] args)
         
         {
             System.Console.WriteLine("OMGHAI!");
