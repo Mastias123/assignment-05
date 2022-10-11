@@ -3,7 +3,7 @@
     public class Program
     {
         public IList<Item> Items;
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
 
@@ -38,7 +38,7 @@
         {
             foreach (var item in Items)
             {
-                item.DecreaseSellIn();
+                item.UpdateItem();
             }
         }
         public static Item Create(String name, int sellIn, int quality)
@@ -81,14 +81,14 @@
     }
     public class Item
     {
-        public virtual void DecreaseSellIn(){} //This method has been added to Item in order to support a solution that uses polymorphism
+        public virtual void UpdateItem(){} //This method has been added to Item in order to support a solution that uses polymorphism
         public string Name { get; set; }
         public int SellIn { get; set; }
         public int Quality { get; set; }
     }
     public class BasicItem : Item
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int decreaseValue = 1;
@@ -112,7 +112,7 @@
     }
     public class ConjuredBasicItem : BasicItem 
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int decreaseValue = 2;
@@ -125,7 +125,7 @@
     }
     public class AgedBrie : Item
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int IncreaseValue = 1;
@@ -149,7 +149,7 @@
     }
     public class ConjuredAgedBrie : AgedBrie
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int IncreaseValue = 2;
@@ -162,7 +162,7 @@
     }
     public class BackStagePass : Item
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int IncreaseValue = 1;
@@ -197,7 +197,7 @@
     }
     public class ConjuredBackStagePass : BackStagePass
     {
-        public override void DecreaseSellIn()
+        public override void UpdateItem()
         {
             SellIn = SellIn - 1;
             int IncreaseValue = 2;
