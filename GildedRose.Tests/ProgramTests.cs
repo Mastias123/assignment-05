@@ -214,6 +214,26 @@ public class ProgramTests
         Assert.Equal(-1,testItem[0].SellIn);
         Assert.Equal(0, testItem[0].Quality);
     }
+    [Fact]
+    public void BackStage_Pass_Max_Quality()
+    {
+        //Act
+        testItem.Add(Program.Create("Backstage passes to a TAFKAL80ETC concert",6,50));
+        _program.UpdateQuality();
+        //Assert
+        Assert.Equal(5,testItem[0].SellIn);
+        Assert.Equal(50, testItem[0].Quality);
+    }
+    [Fact]
+    public void Conjured_BackStage_Pass_Max_Quality()
+    {
+        //Act
+        testItem.Add(Program.Create("Conjured Backstage passes to a TAFKAL80ETC concert",6,50));
+        _program.UpdateQuality();
+        //Assert
+        Assert.Equal(5,testItem[0].SellIn);
+        Assert.Equal(50, testItem[0].Quality);
+    }
 
     [Fact]
     public void sulfuras()

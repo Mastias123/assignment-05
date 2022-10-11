@@ -22,7 +22,6 @@
 				Create("Conjured Mana Cake",3,6),
                 }
             };
-
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
