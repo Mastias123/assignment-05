@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace GildedRose
+﻿namespace GildedRose
 {
     public class Program
     {
@@ -14,16 +11,15 @@ namespace GildedRose
             {
                 Items = new List<Item>
                 {
-                Item.CreateItem("+5 Dexterity Vest",10,20),
-                Item.CreateItem("Aged Brie",2,0 ),
-                Item.CreateItem("Elixir of the Mongoose",5,7),
-                Item.CreateItem("Sulfuras, Hand of Ragnaros",0,80),
-                Item.CreateItem("Sulfuras, Hand of Ragnaros",-1,80),
-                Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",15,20),
-                Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",10,49),
-                Item.CreateItem("Backstage passes to a TAFKAL80ETC concert", 5,49),
-				Item.CreateItem("Conjured Mana Cake",3,6),
-                //Create("name", 2, 2) //Slet når færdig
+                Create("+5 Dexterity Vest",10,20),
+                Create("Aged Brie",2,0 ),
+                Create("Elixir of the Mongoose",5,7),
+                Create("Sulfuras, Hand of Ragnaros",0,80),
+                Create("Sulfuras, Hand of Ragnaros",-1,80),
+                Create("Backstage passes to a TAFKAL80ETC concert",15,20),
+                Create("Backstage passes to a TAFKAL80ETC concert",10,49),
+                Create("Backstage passes to a TAFKAL80ETC concert", 5,49),
+				Create("Conjured Mana Cake",3,6),
                 }
             };
 
@@ -46,15 +42,7 @@ namespace GildedRose
                 item.DecreaseSellIn();
             }
         }
-        // public static Item Create(String name, int sellIn, int quality)
-        // {
-        //     return new BackStagePass{Name = name, SellIn = sellIn, Quality = quality};
-        // }
-    }
-
-    public class Item
-    {
-        public static Item CreateItem(String name, int sellIn, int quality)
+        public static Item Create(String name, int sellIn, int quality)
         {
             if(name.Contains("Sulfuras, Hand of Ragnaros"))
             {
@@ -91,14 +79,14 @@ namespace GildedRose
                 return new BasicItem{Name = name, SellIn = sellIn, Quality = quality};
             }
         }
-        public virtual void DecreaseSellIn(){}
+    }
+    public class Item
+    {
+        public virtual void DecreaseSellIn(){} //This method has been added to Item in order to support a solution that uses polymorphism
         public string Name { get; set; }
-
         public int SellIn { get; set; }
-
         public int Quality { get; set; }
     }
-
     public class BasicItem : Item
     {
         public override void DecreaseSellIn()
@@ -214,7 +202,6 @@ namespace GildedRose
         {
             SellIn = SellIn - 1;
             int IncreaseValue = 2;
-
             if(SellIn < 11)
             {
                 IncreaseValue = IncreaseValue +2;
@@ -228,7 +215,6 @@ namespace GildedRose
                 IncreaseValue = 0;
                 Quality = 0;
             }
-
             CalculateQuality(IncreaseValue);
         }
     }

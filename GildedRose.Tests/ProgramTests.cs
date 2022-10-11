@@ -16,7 +16,7 @@ public class ProgramTests
     public void Plus_Five_Dexterity_Vest()
     {
         //Act
-        testItem.Add(Item.CreateItem("+5 Dexterity Vest",10,20 ));
+        testItem.Add(Program.Create("+5 Dexterity Vest",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -27,7 +27,7 @@ public class ProgramTests
     public void Conjured_Plus_Five_Dexterity_Vest()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured +5 Dexterity Vest",10,20 ));
+        testItem.Add(Program.Create("Conjured +5 Dexterity Vest",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -37,7 +37,7 @@ public class ProgramTests
     public void Plus_Five_Dexterity_Vest_Past_sellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("+5 Dexterity Vest",0,20 ));
+        testItem.Add(Program.Create("+5 Dexterity Vest",0,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -48,7 +48,7 @@ public class ProgramTests
     public void Conjured_Plus_Five_Dexterity_Vest_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured +5 Dexterity Vest",0,20 ));
+        testItem.Add(Program.Create("Conjured +5 Dexterity Vest",0,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -59,7 +59,7 @@ public class ProgramTests
     public void Plus_Five_Dexterity_Vest_Quality_0()
     {
         //Act
-        testItem.Add(Item.CreateItem("+5 Dexterity Vest",5,0 ));
+        testItem.Add(Program.Create("+5 Dexterity Vest",5,0 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(4,testItem[0].SellIn);
@@ -70,7 +70,7 @@ public class ProgramTests
     public void Aged_brie()
     {
         //Act
-        testItem.Add(Item.CreateItem("Aged Brie",10,20 ));
+        testItem.Add(Program.Create("Aged Brie",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -80,7 +80,7 @@ public class ProgramTests
     public void Aged_brie_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Aged Brie",-1,20 ));
+        testItem.Add(Program.Create("Aged Brie",-1,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-2,testItem[0].SellIn);
@@ -90,7 +90,7 @@ public class ProgramTests
     public void Conjured_Aged_brie_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Aged Brie",-1,20 ));
+        testItem.Add(Program.Create("Conjured Aged Brie",-1,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-2,testItem[0].SellIn);
@@ -101,7 +101,7 @@ public class ProgramTests
     public void Conjured_Aged_brie()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Aged Brie",10,20 ));
+        testItem.Add(Program.Create("Conjured Aged Brie",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -112,7 +112,7 @@ public class ProgramTests
     public void Aged_brie_Quality_50()
     {
         //Act
-        testItem.Add(Item.CreateItem("Aged Brie",10,50 ));
+        testItem.Add(Program.Create("Aged Brie",10,50 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -122,7 +122,7 @@ public class ProgramTests
     public void Conjured_Aged_brie_Quality_50()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Aged Brie",10,50 ));
+        testItem.Add(Program.Create("Conjured Aged Brie",10,50 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -133,7 +133,7 @@ public class ProgramTests
     public void BackStage_Pass()
     {
         //Act
-        testItem.Add(Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",50,20 ));
+        testItem.Add(Program.Create("Backstage passes to a TAFKAL80ETC concert",50,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(49,testItem[0].SellIn);
@@ -144,7 +144,7 @@ public class ProgramTests
     public void Conjured_BackStage_Pass()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Backstage passes to a TAFKAL80ETC concert",50,20 ));
+        testItem.Add(Program.Create("Conjured Backstage passes to a TAFKAL80ETC concert",50,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(49,testItem[0].SellIn);
@@ -155,7 +155,7 @@ public class ProgramTests
     public void BackStage_Pass_SellIn_10()
     {
         //Act
-        testItem.Add(Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",10,20 ));
+        testItem.Add(Program.Create("Backstage passes to a TAFKAL80ETC concert",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -166,7 +166,7 @@ public class ProgramTests
     public void Conjured_BackStage_Pass_SellIn_10()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Backstage passes to a TAFKAL80ETC concert",10,20 ));
+        testItem.Add(Program.Create("Conjured Backstage passes to a TAFKAL80ETC concert",10,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(9,testItem[0].SellIn);
@@ -178,7 +178,7 @@ public class ProgramTests
     public void BackStage_Pass_SellIn_4()
     {
         //Act
-        testItem.Add(Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",4,20 ));
+        testItem.Add(Program.Create("Backstage passes to a TAFKAL80ETC concert",4,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(3,testItem[0].SellIn);
@@ -188,7 +188,7 @@ public class ProgramTests
     public void Conjured_BackStage_Pass_SellIn_4()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Backstage passes to a TAFKAL80ETC concert",4,20 ));
+        testItem.Add(Program.Create("Conjured Backstage passes to a TAFKAL80ETC concert",4,20 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(3,testItem[0].SellIn);
@@ -198,7 +198,7 @@ public class ProgramTests
     public void BackStage_Pass_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Backstage passes to a TAFKAL80ETC concert",0,20));
+        testItem.Add(Program.Create("Backstage passes to a TAFKAL80ETC concert",0,20));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -208,7 +208,7 @@ public class ProgramTests
     public void Conjured_BackStage_Pass_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Backstage passes to a TAFKAL80ETC concert",0,20));
+        testItem.Add(Program.Create("Conjured Backstage passes to a TAFKAL80ETC concert",0,20));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -219,7 +219,7 @@ public class ProgramTests
     public void sulfuras()
     {
         //Act
-        testItem.Add(Item.CreateItem("Sulfuras, Hand of Ragnaros",10,80));
+        testItem.Add(Program.Create("Sulfuras, Hand of Ragnaros",10,80));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(10,testItem[0].SellIn);
@@ -229,7 +229,7 @@ public class ProgramTests
     public void Conjured_sulfuras()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Sulfuras, Hand of Ragnaros",10,80));
+        testItem.Add(Program.Create("Conjured Sulfuras, Hand of Ragnaros",10,80));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(10,testItem[0].SellIn);
@@ -240,7 +240,7 @@ public class ProgramTests
     public void mana_Cake()
     {
         //Act
-        testItem.Add(Item.CreateItem("Mana Cake",3,6 ));
+        testItem.Add(Program.Create("Mana Cake",3,6 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(2,testItem[0].SellIn);
@@ -250,7 +250,7 @@ public class ProgramTests
     public void mana_Cake_After_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Mana Cake",0,6 ));
+        testItem.Add(Program.Create("Mana Cake",0,6 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -261,7 +261,7 @@ public class ProgramTests
     public void Conjured_mana_Cake()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Mana Cake",3,6 ));
+        testItem.Add(Program.Create("Conjured Mana Cake",3,6 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(2,testItem[0].SellIn);
@@ -271,7 +271,7 @@ public class ProgramTests
     public void Conjured_mana_Cake_After_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Mana Cake",0,6 ));
+        testItem.Add(Program.Create("Conjured Mana Cake",0,6 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -282,7 +282,7 @@ public class ProgramTests
     public void ElixirOfTheMoonGoose()
     {
         //Act
-        testItem.Add(Item.CreateItem("Elixir of the Mongoose",5,7 ));
+        testItem.Add(Program.Create("Elixir of the Mongoose",5,7 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(4,testItem[0].SellIn);
@@ -292,7 +292,7 @@ public class ProgramTests
     public void Conjured_ElixirOfTheMoonGoose()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Elixir of the Mongoose",5,7 ));
+        testItem.Add(Program.Create("Conjured Elixir of the Mongoose",5,7 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(4,testItem[0].SellIn);
@@ -302,7 +302,7 @@ public class ProgramTests
     public void ElixirOfTheMoonGoose_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Elixir of the Mongoose",0,7 ));
+        testItem.Add(Program.Create("Elixir of the Mongoose",0,7 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -312,7 +312,7 @@ public class ProgramTests
     public void Conjured_ElixirOfTheMoonGoose_Past_SellIn()
     {
         //Act
-        testItem.Add(Item.CreateItem("Conjured Elixir of the Mongoose",0,7 ));
+        testItem.Add(Program.Create("Conjured Elixir of the Mongoose",0,7 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(-1,testItem[0].SellIn);
@@ -322,7 +322,7 @@ public class ProgramTests
     public void ElixirOfTheMoonGoose_BasicItemClass()
     {
         //Act
-        testItem.Add(Item.CreateItem("Elixir of the Mongoose",5,7 ));
+        testItem.Add(Program.Create("Elixir of the Mongoose",5,7 ));
         _program.UpdateQuality();
         //Assert
         Assert.Equal(4,testItem[0].SellIn);
