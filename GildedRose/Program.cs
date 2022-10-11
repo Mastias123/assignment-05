@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace GildedRose
+﻿namespace GildedRose
 {
     public class Program
     {
@@ -12,38 +9,20 @@ namespace GildedRose
             System.Console.WriteLine("OMGHAI!");
 
             var app = new Program()
-                          {
-                              Items = new List<Item>
-                                          {
-                new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20 },
-                new Item { Name = "Aged Brie", SellIn = 2, Quality = 0 },
-                new Item { Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7 },
-                new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 },
-                new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80 },
-                new Item
+            {
+                Items = new List<Item>
                 {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 15,
-                    Quality = 20
-                },
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 10,
-                    Quality = 49
-                },
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 5,
-                    Quality = 49
-                },
-				// this conjured item does not work properly yet
-				new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 }
-                                          }
-
-                          };
-
+                Create("+5 Dexterity Vest",10,20),
+                Create("Aged Brie",2,0 ),
+                Create("Elixir of the Mongoose",5,7),
+                Create("Sulfuras, Hand of Ragnaros",0,80),
+                Create("Sulfuras, Hand of Ragnaros",-1,80),
+                Create("Backstage passes to a TAFKAL80ETC concert",15,20),
+                Create("Backstage passes to a TAFKAL80ETC concert",10,49),
+                Create("Backstage passes to a TAFKAL80ETC concert", 5,49),
+				Create("Conjured Mana Cake",3,6),
+                }
+            };
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
@@ -56,222 +35,190 @@ namespace GildedRose
                 app.UpdateQuality();
                     
             }
-
         }
-    
-
         public void UpdateQuality()
         {
-
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-
-                bool Conjured = false;
-                if(Items[i].Name.StartsWith("Conjured")){
-                    Conjured = true;
-                    var temp = Items[i].Name.Substring(9);
-                    Items[i].Name = temp;
-                }
-
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            if(Conjured){
-                                Items[i].Quality = Items[i].Quality - 2;
-                            } else {
-                                Items[i].Quality = Items[i].Quality - 1;
-                            }
-                        }
-                    }
-                }
-                    else 
-                {
-                    if (Items[i].Quality < 50)
-                    {
-                        if(Conjured){
-                            Items[i].Quality = Items[i].Quality + 2;
-                        } else {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
-                        
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {   
-                                    if(Conjured){
-                                        Items[i].Quality = Items[i].Quality + 2;
-                                    } else {
-                                        Items[i].Quality = Items[i].Quality + 1;
-                                    }
-                                    
-                                }
-                            }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {   
-                                    if (Conjured) {
-                                        Items[i].Quality = Items[i].Quality + 2;
-                                    } else {
-                                        Items[i].Quality = Items[i].Quality + 1;
-                                    }
-                                    
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
-                    {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {   
-                                    if (Conjured) {
-                                        Items[i].Quality = Items[i].Quality - 2;
-                                    } else {
-                                        Items[i].Quality = Items[i].Quality - 1;
-                                    }
-                                    
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (Items[i].Quality < 50 && Items[i].Quality+1<50)
-                        {
-                            if (Conjured){
-                                Items[i].Quality = Items[i].Quality + 2;
-                            } else {
-                                Items[i].Quality = Items[i].Quality + 1;
-                            }
-
-                        }
-                    }
-                }
-
-                if(Conjured){
-                        
-                    var temp = Items[i].Name;
-                    
-                    Items[i].Name = "Conjured "+ temp;
-                    
-                }
-                
+                item.DecreaseSellIn();
             }
         }
+        public static Item Create(String name, int sellIn, int quality)
+        {
+            if(name.Contains("Sulfuras, Hand of Ragnaros"))
+            {
+                if(name.Contains("Conjured"))
+                {
+                    return new ConjuerdLegendaryItem{Name = name, SellIn = sellIn, Quality = quality};
+                }
+                return new LegendaryItem{Name = name, SellIn = sellIn, Quality = quality};
+            }
+            if(name.Contains("Aged Brie"))
+            {
+                if(name.Contains("Conjured"))
+                {
+                    return new ConjuredAgedBrie{Name = name, SellIn = sellIn, Quality = quality};
+                }
+                return new AgedBrie{Name = name, SellIn = sellIn, Quality = quality};
+            }
+            if(name.Contains("Backstage passes to a TAFKAL80ETC concert"))
+            {
+                if(name.Contains("Conjured"))
+                {
+                    return new ConjuredBackStagePass{Name = name, SellIn = sellIn, Quality = quality};
+                }
 
+                return new BackStagePass{Name = name, SellIn = sellIn, Quality = quality};
+            }
+            //BasicItems
+            if(name.Contains("Conjured"))
+            {
+                return new ConjuredBasicItem{Name = name, SellIn = sellIn, Quality = quality};
+            }
+            else
+            {
+                return new BasicItem{Name = name, SellIn = sellIn, Quality = quality};
+            }
+        }
     }
-
-
-    //     public void UpdateQuality()
-    //     {
-
-    //         for (var i = 0; i < Items.Count; i++)
-    //         {
-    //             if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-    //             {
-    //                 if (Items[i].Quality > 0)
-    //                 {
-    //                     if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-    //                     {
-    //                         Items[i].Quality = Items[i].Quality - 1;
-    //                     }
-    //                 }
-    //             }
-    //                 else 
-    //             {
-    //                 if (Items[i].Quality < 50)
-    //                 {
-    //                     Items[i].Quality = Items[i].Quality + 1;
-
-    //                     if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-    //                     {
-    //                         if (Items[i].SellIn < 11)
-    //                         {
-    //                             if (Items[i].Quality < 50)
-    //                             {
-    //                                 Items[i].Quality = Items[i].Quality + 1;
-    //                             }
-    //                         }
-
-    //                         if (Items[i].SellIn < 6)
-    //                         {
-    //                             if (Items[i].Quality < 50)
-    //                             {
-    //                                 Items[i].Quality = Items[i].Quality + 1;
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-
-    //             if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-    //             {
-    //                 Items[i].SellIn = Items[i].SellIn - 1;
-    //             }
-
-    //             if (Items[i].SellIn < 0)
-    //             {
-    //                 if (Items[i].Name != "Aged Brie")
-    //                 {
-    //                     if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-    //                     {
-    //                         if (Items[i].Quality > 0)
-    //                         {
-    //                             if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-    //                             {
-    //                                 Items[i].Quality = Items[i].Quality - 1;
-    //                             }
-    //                         }
-    //                     }
-    //                     else
-    //                     {
-    //                         Items[i].Quality = Items[i].Quality - Items[i].Quality;
-    //                     }
-    //                 }
-    //                 else
-    //                 {
-    //                     if (Items[i].Quality < 50)
-    //                     {
-    //                         Items[i].Quality = Items[i].Quality + 1;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    // }
-
     public class Item
     {
+        public virtual void DecreaseSellIn(){} //This method has been added to Item in order to support a solution that uses polymorphism
         public string Name { get; set; }
-
         public int SellIn { get; set; }
-
         public int Quality { get; set; }
     }
+    public class BasicItem : Item
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int decreaseValue = 1;
+            if(SellIn <0)
+            {
+                decreaseValue = 2;
+            }
+            CalculateQuality(decreaseValue);
+        }
+        protected void CalculateQuality(int decreaseValue)
+        {
+            if(Quality==0 || Quality <0)
+            {
+                Quality=0;
+            }
+            else
+            {
+                Quality = Quality - decreaseValue;
+            }
+        }
+    }
+    public class ConjuredBasicItem : BasicItem 
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int decreaseValue = 2;
+            if(SellIn <0)
+            {
+                decreaseValue = 4;
+            }
+            CalculateQuality(decreaseValue);
+        }
+    }
+    public class AgedBrie : Item
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int IncreaseValue = 1;
+            if(SellIn <0)
+            {
+                IncreaseValue = 2;
+            }
+            CalculateQuality(IncreaseValue);
+        }
+        protected void CalculateQuality(int IncreaseValue)
+        {
+            if(Quality==50 || Quality >50)
+            {
+                Quality=50;
+            }
+            else
+            {
+                Quality = Quality + IncreaseValue;
+            }
+        }
+    }
+    public class ConjuredAgedBrie : AgedBrie
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int IncreaseValue = 2;
+            if(SellIn <0)
+            {
+                IncreaseValue = 4;
+            }
+            CalculateQuality(IncreaseValue);
+        }
+    }
+    public class BackStagePass : Item
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int IncreaseValue = 1;
 
-}
+            if(SellIn < 11)
+            {
+                IncreaseValue = IncreaseValue +1;
+            }
+            if(SellIn < 6)
+            {
+                IncreaseValue = IncreaseValue +1;
+            }
+            if(SellIn < 0)
+            {
+                IncreaseValue = 0;
+                Quality = 0;
+            }
+
+            CalculateQuality(IncreaseValue);
+        }
+        protected void CalculateQuality(int IncreaseValue)
+        {
+            if(Quality==50 || Quality >50)
+            {
+                Quality=50;
+            }
+            else
+            {
+                Quality = Quality + IncreaseValue;
+            }
+        }
+    }
+    public class ConjuredBackStagePass : BackStagePass
+    {
+        public override void DecreaseSellIn()
+        {
+            SellIn = SellIn - 1;
+            int IncreaseValue = 2;
+            if(SellIn < 11)
+            {
+                IncreaseValue = IncreaseValue +2;
+            }
+            if(SellIn < 6)
+            {
+                IncreaseValue = IncreaseValue +2;
+            }
+            if(SellIn < 0)
+            {
+                IncreaseValue = 0;
+                Quality = 0;
+            }
+            CalculateQuality(IncreaseValue);
+        }
+    }
+    public class LegendaryItem : Item {}
+    public class ConjuerdLegendaryItem : LegendaryItem{}
+}    
